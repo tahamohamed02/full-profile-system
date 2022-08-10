@@ -275,7 +275,7 @@ if (message.content.startsWith(prefix + "profile")) {
 let res = await SQLite.get(`SELECT * FROM profileSystem WHERE id = ${getvalueof.id}`)
 if(!res) SQLite.run(`INSERT INTO profileSystem VALUES ('${getvalueof.id}', 1, 0, ${xp}, 0, 0, 0, ""`)
 let Image = Canvas.Image,canvas = Canvas.createCanvas(307, 300),ctx = canvas.getContext('2d');
-const rg = ["./defaultBACKGROUND.png"];
+const rg = ["./assests/profilePHOTOS/profile.png"];
 fs.readFile(`${rg[Math.floor(Math.random() * rg.length)]}`, function (err, Background) {  
 if (err) return console.log(err);let BG = Canvas.Image;let ground = new Image;ground.src = Background;ctx.drawImage(ground, 0, 0, 307, 300);})/// PHOTO SIZE
 
@@ -286,14 +286,18 @@ ava.getBuffer(jimp.MIME_PNG, async( err, buf) => {if (err) return console.log();
 */
   
                                  
-ctx.font = 'Arial 23px profile';ctx.fontSize = '62px'; ctx.fillStyle = "#fff";ctx.textAlign = "center"; ctx.fillText(`${getvalueof.username}`, 154, 178)/////USERNAME
+
 let leaderboard = await SQLite.all(`SELECT * FROM profileSystem ORDER BY xp DESC, credits DESC`);
+  var myFont = new FontFace('myFont', 'url(assets/fonts/myFont/myFont.otf)');
+
+  ctx.font = "23px Arial";ctx.fontSize = '62px'; ctx.fillStyle = "#fff";ctx.textAlign = "center";
+ctx.fillText(`${getvalueof.username}`, 205, 63)/////USERNAME
 ctx.font = "20px Arial";ctx.fontSize = '20px';ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";////RANK
-for(var i = 0;i<leaderboard.length;i++) {if(leaderboard[i].id == getvalueof.id) {ctx.fillText(`#${i+1}`, 52, 134)}}///RANK
-ctx.font = "20px Arial";ctx.fontSize = '20px';ctx.fillStyle = '#FFFFFF'; ctx.textAlign = "center";ctx.fillText(`${res.credits}`, 254 , 134)////credits
-ctx.font = "20px Arial";ctx.fontSize = '10px';ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.level}`, 253, 71)
-ctx.font = "20px Arial";ctx.fontSize = "20px";ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.rep}`, 54,71);///REPS
-ctx.font = "18px Arial";ctx.fontSize = "18px";ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.info}`,151,266)
+for(var i = 0;i<leaderboard.length;i++) {if(leaderboard[i].id == getvalueof.id) {ctx.fillText(`${i+1}`, 20, 230)}}///RANK
+ctx.font = "20px Arial";ctx.fontSize = '20px';ctx.fillStyle = '#FFFFFF'; ctx.textAlign = "center";ctx.fillText(`${res.credits}`, 145 , 113)////credits
+ctx.font = "20px Arial";ctx.fontSize = '10px';ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.level}`, 20, 170)
+ctx.font = "20px Arial";ctx.fontSize = "20px";ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.rep}`, 145,92.5);///REPS
+ctx.font = "18px Arial";ctx.fontSize = "18px";ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.info}`,165,260)
 //  الاكس بي //ctx.font = "15px Arial";ctx.fontSize = '15px'; ctx.fillStyle = "#FFFFFF"; ctx.textAlign = "center";ctx.fillText(`${res.xp}`, 130, 270)////XP
  
                                                    
