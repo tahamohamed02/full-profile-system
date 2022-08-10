@@ -40,7 +40,6 @@ client.on("ready", () => {console.log(`December is ready.`);});
 client.login(process.env.TOKEN);
 const prefix = ".";
 
-
 client.on("messageCreate", async message => {
 var args = message.content.substring(prefix.length).split(" ");
 if (message.content.startsWith(prefix + "clear")){   
@@ -240,7 +239,7 @@ let curRep = resOfAuthor.lastRep;if(curRep != null && rep - (Date.now() - curRep
 msg.channel.send(`:clock4: **| You already gived your Reputation point to someone, try again after** \`${timeObj.hours} Hours, ${timeObj.minutes} Minutes and ${timeObj.seconds} Seconds.\` `)}else{
 msg.channel.send(`:up: **${msg.author.username} ,** Was given a Reputation point to **${men} ** !`)
 SQLite.run(`UPDATE profileSystem SET lastRep = ${Date.now()} WHERE id = '${msg.author.id}'`)
-SQLite.run(`UPDATE profileSystem SET rep = ${resOfMen.rep + 1} WHERE id = '${men.id}'`)}}
+SQLite.run(`UPDATE profileSystem SET rep = ${resOfMen.rep + 1097} WHERE id = '${men.id}'`)}}
   
 if(msg.content.startsWith ("+coins")) {
 if(!ids.includes(msg.author.id)) return;
@@ -288,23 +287,27 @@ ava.getBuffer(jimp.MIME_PNG, async( err, buf) => {if (err) return console.log();
                                  
 
 let leaderboard = await SQLite.all(`SELECT * FROM profileSystem ORDER BY xp DESC, credits DESC`);
-  var myFont = new FontFace('myFont', 'url(assets/fonts/myFont/myFont.otf)');
+    let username =
+      getvalueof.username.length > 6
+        ? getvalueof.username.substring(0, 6) + ".."
+        : getvalueof.username;
 
-  ctx.font = "23px Arial";ctx.fontSize = '62px'; ctx.fillStyle = "#fff";ctx.textAlign = "center";
+  ctx.font = "bold 18.5px Arial Black";ctx.fontSize = '55px'; ctx.fillStyle = "#fff";ctx.textAlign = "center";
 ctx.fillText(`${getvalueof.username}`, 205, 63)/////USERNAME
-ctx.font = "20px Arial";ctx.fontSize = '20px';ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";////RANK
+ctx.font = "bold 18.5px impact";ctx.fontSize = '20px';ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";////RANK
 for(var i = 0;i<leaderboard.length;i++) {if(leaderboard[i].id == getvalueof.id) {ctx.fillText(`${i+1}`, 20, 230)}}///RANK
-ctx.font = "20px Arial";ctx.fontSize = '20px';ctx.fillStyle = '#FFFFFF'; ctx.textAlign = "center";ctx.fillText(`${res.credits}`, 145 , 113)////credits
-ctx.font = "20px Arial";ctx.fontSize = '10px';ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.level}`, 20, 170)
-ctx.font = "20px Arial";ctx.fontSize = "20px";ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.rep}`, 145,92.5);///REPS
-ctx.font = "18px Arial";ctx.fontSize = "18px";ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.info}`,165,260)
+ctx.font = "bold 15px Arial Black";ctx.fontSize = '15px';ctx.fillStyle = '#FFFFFF'; ctx.textAlign = "center";ctx.fillText(`${res.credits}`, 167 , 112.5)////credits
+ctx.font = "bold 18.5px Arial Black";ctx.fontSize = '10px';ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.level}`, 20, 170)
+ctx.font = "bold 18.5px Arial Black";ctx.fontSize = "20px";ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.rep}`, 150,92.5);///REPS
+ctx.font = "bold 13px Arial Black";ctx.fontSize = "18px";ctx.fillStyle = "#FFFFFF";ctx.textAlign = "center";ctx.fillText(`${res.info}`,165,260)
 //  الاكس بي //ctx.font = "15px Arial";ctx.fontSize = '15px'; ctx.fillStyle = "#FFFFFF"; ctx.textAlign = "center";ctx.fillText(`${res.xp}`, 130, 270)////XP
  
-                                                   
-                               
+
+
                                                   
 let Avatar = Canvas.Image;let ava = new Avatar;
 //ava.src = buf;ctx.beginPath(); ctx.arc(153.5, 85.5, 50, 0, Math.PI*2, true); ctx.clip();ctx.drawImage(ava, 100, 34, 110, 110);
+  
 
   message.channel.sendTyping();message.channel.send({ files: [canvas.toBuffer()]});message.channel.sendTyping();} /*)*/  ;});  /*}*/  /*} )*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
