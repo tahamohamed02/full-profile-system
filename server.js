@@ -358,3 +358,4 @@ message.channel.send(embed)
 function saveblacklist() {
     fs.writeFileSync("./blacklist.json", JSON.stringify(blacklist, null, 4))
 }
+//ي
